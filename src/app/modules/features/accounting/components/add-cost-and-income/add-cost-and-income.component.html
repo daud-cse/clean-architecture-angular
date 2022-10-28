@@ -1,0 +1,55 @@
+<div class="cost-container">
+
+    <div class="cost-form">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input [(ngModel)]="incomeCostModel.description" matInput placeholder="Description">
+
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select [(ngModel)]="incomeCostModel.headTypeId">
+                <mat-option value="1">Income</mat-option>
+                <mat-option value="2">Cost</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Amount</mat-label>
+            <input type="number" [(ngModel)]="incomeCostModel.amount" matInput placeholder="Amount">
+
+        </mat-form-field>
+
+
+        <div class="actions">
+            <button (click)="save()" mat-raised-button color="primary">Save</button>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="current">
+            <button (click)="goToCurrentBalance()" mat-raised-button color="primary">Current Balance</button>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.headTypeName}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+</div>
